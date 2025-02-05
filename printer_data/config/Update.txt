@@ -1,4 +1,5 @@
 ./kiauh/kiauh.sh
+./beacon_klipper/install.sh
 
 ## Leviathan Update Klipper
 sudo service klipper stop
