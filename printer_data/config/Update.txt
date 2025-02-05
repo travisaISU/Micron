@@ -1,0 +1,27 @@
+./kiauh/kiauh.sh
+
+## Leviathan Update Klipper
+sudo service klipper stop
+cd ~/klipper
+git pull
+make clean
+make menuconfig
+## STM32F446, 32KiB bootloader, 12 MHz crystal, USB (on PA11/PA12)
+make
+## Double Click SW1 on mainboard
+ls /dev/serial/by-id/*
+~/katapult-env/bin/python3 ~/katapult/scripts/flashtool.py -d /dev/ttyACM0 -f out/klipper.bin
+ls /dev/serial/by-id/*
+
+## NH36 Update Klipper
+sudo service klipper stop
+cd ~/klipper
+git pull
+make clean
+make menuconfig
+## RP2040, 16KiB, USBSERIAL, !gpio8
+make
+## Double Click SW1 on mainboard
+ls /dev/serial/by-id/*
+~/katapult-env/bin/python3 ~/katapult/scripts/flashtool.py -d /dev/ttyACM2 -f out/klipper.bin
+ls /dev/serial/by-id/*
